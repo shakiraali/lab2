@@ -1,0 +1,147 @@
+package application;
+	
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+
+
+public class Main extends Application 
+{
+	int total=0;
+	
+	//declare buttons
+	
+	TextField tfNum1;
+	TextField tfNum2;
+	Button add;
+	Button SUBTRACT;
+	Button MULTIPLY;
+	Button DIVIDE;
+	Button CLEAR;
+	Button EXIT;
+	@Override
+	public void start(Stage primaryStage) 
+	{
+		try 
+		{
+			Label num1L        = new Label("Number 1 : ");
+			TextField num1TF   = new TextField();
+			Label num2L        = new Label("Number 2 : ");
+			TextField num2TF   = new TextField();
+			Label answerL      = new Label("Answer : ");
+			TextField answerTF = new TextField();
+			
+			Button add = new Button("ADD");
+			Button SUBTRACT=new Button("SUBTRACT");
+			Button MULTIPLY= new Button("MULTIPLY");
+			Button DIVIDE= new Button("DIVIDE");
+			Button CLEAR= new Button("CLEAR");
+			Button EXIT= new Button("EXIT");
+			
+			add.setOnAction(new EventHandler<ActionEvent>()
+	        {
+	            @Override public void handle(ActionEvent e)
+	            {
+	            	 int num1= Integer.parseInt(num1TF.getText());
+	            	 int num2= Integer.parseInt(num2TF.getText());
+	            	 
+	            	 total = num1 + num2;
+	            	 
+	            	 String str = Integer.toString(total);
+	            	 answerTF.setText(str);
+	            }
+	        });
+			
+			SUBTRACT.setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override public void handle(ActionEvent e)
+				{
+					int num1=Integer.parseInt(num1TF.getText());
+					int num2=Integer.parseInt(num2TF.getText());
+					total=num1-num2;
+					String str=Integer.toString(total);
+					answerTF.setText(str);
+				}
+			});
+			MULTIPLY.setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override public void handle(ActionEvent e)
+				{
+					int num1=Integer.parseInt(num1TF.getText());
+					int num2=Integer.parseInt(num2TF.getText());
+					total=num1*num2;
+					String str=Integer.toString(total);
+					answerTF.setText(str);
+				}
+				
+			});
+			DIVIDE.setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override public void handle(ActionEvent e)
+				{
+					int num1=Integer.parseInt(num1TF.getText());
+					int num2=Integer.parseInt(num2TF.getText());
+					total=num1/num2;
+					String str=Integer.toString(total);
+					answerTF.setText(str);
+				}
+			});
+			CLEAR.setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override public void handle(ActionEvent e)
+				{
+					
+					num1TF.clear();
+					num2TF.clear();
+					answerTF.clear();
+					
+					  
+					   
+					  
+				}
+			});
+			EXIT.setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override public void handle(ActionEvent e)
+				{
+					  Stage stage = (Stage) EXIT.getScene().getWindow();
+					     
+					    stage.close();
+				}
+			});
+			GridPane root = new GridPane();
+			root.add(num1L,    0, 0);
+			root.add(num1TF,   1, 0);
+			root.add(num2L,    0, 1);
+			root.add(num2TF,   1, 1);
+			root.add(answerL,  0, 2);
+			root.add(answerTF, 1, 2);
+			root.add(add,      0, 6);
+			root.add(SUBTRACT, 0,  7);
+			root.add(MULTIPLY, 0, 8);
+			root.add(DIVIDE, 0, 9);
+			root.add(CLEAR, 0, 10);
+			root.add(EXIT, 0, 11);
+			
+			Scene scene = new Scene(root,500,500);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		}
+		catch(Exception e) 
+		{
+			System.out.println("Error"+e.getMessage());	
+			e.printStackTrace();
+		}
+	}
+	
+		
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
